@@ -28,7 +28,7 @@
   },
   "scripts": {
     "dev": "cross-env PORT=5008 react-scripts start",
-    "build": "react-scripts build",
+    "build": "cross-env PUBLIC_URL='./' react-scripts build",
     "postbuild": "cp -f README.md public/README.md",
     "deploy": "yarn build && gh-pages -d build -b master",
     "test": "react-scripts test",

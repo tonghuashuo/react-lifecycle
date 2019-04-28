@@ -6,7 +6,7 @@ import App from './App'
 import { unregister } from './serviceWorker'
 
 render(
-  <Router basename={''}>
+  <Router basename='/'>
     <Route path='/' component={App} />
   </Router>,
   document.getElementById('root')
