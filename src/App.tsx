@@ -1,21 +1,21 @@
 import React, { Component, Fragment } from 'react'
 import { Switch, Route, NavLink} from 'react-router-dom'
 import ParentClass from './components/ParentClass'
-import ParentHook from './components/ParentHook'
+import ParentHooks from './components/ParentHooks'
 
 const routes = [
   { to: '/', label: 'Home' },
   { to: '/class', label: 'Parent (Class)', children: [
     { to: '/class-sync', label: 'Child (Class / Sync)' },
     { to: '/class-async', label: 'Child (Class / Async)' },
-    { to: '/hook-sync', label: 'Child (Hook / Sync)' },
-    { to: '/hook-async', label: 'Child (Hook / Async)' },
+    { to: '/hooks-sync', label: 'Child (Hooks / Sync)' },
+    { to: '/hooks-async', label: 'Child (Hooks / Async)' },
   ] },
-  { to: '/hook', label: 'Parent (Hook)', children: [
+  { to: '/hooks', label: 'Parent (Hooks)', children: [
     { to: '/class-sync', label: 'Child (Class / Sync)' },
     { to: '/class-async', label: 'Child (Class / Async)' },
-    { to: '/hook-sync', label: 'Child (Hook / Sync)' },
-    { to: '/hook-async', label: 'Child (Hook / Async)' }
+    { to: '/hooks-sync', label: 'Child (Hooks / Sync)' },
+    { to: '/hooks-async', label: 'Child (Hooks / Async)' }
   ] },
 ]
 
@@ -51,7 +51,7 @@ class App extends Component {
 
         <Switch>
           <Route path='/class' component={ParentClass} />
-          <Route path='/hook' component={ParentHook} />
+          <Route path='/hooks' component={ParentHooks} />
         </Switch>
       </div>
     )

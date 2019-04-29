@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { ParentProps } from './interface'
 import { getDelay } from './utils'
 
-const ChildHookAsync = (props: ParentProps) => {
+const ChildHooksSync = (props: ParentProps) => {
   const { parentCounter } = props
   const [counter, setCounter] = useState(0)
 
@@ -51,4 +51,4 @@ const ChildHookAsync = (props: ParentProps) => {
   )
 }
 
-export default ChildHookAsync
+export default ChildHooksSync

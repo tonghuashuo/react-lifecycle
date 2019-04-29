@@ -2,21 +2,21 @@ import React, { useState, useEffect } from 'react'
 import Loadable from 'react-loadable'
 import { Switch, Route, RouteComponentProps} from 'react-router-dom'
 import ChildClassSync from './ChildClassSync'
-import ChildHookSync from './ChildHookSync'
+import ChildHooksSync from './ChildHooksSync'
 import { getDelay } from './utils'
 
 const ChildClassAsync = Loadable({
   loader: () => import('./ChildClassAsync'),
   loading: () => null
 })
-const ChildHookAsync = Loadable({
-  loader: () => import('./ChildHookAsync'),
+const ChildHooksAsync = Loadable({
+  loader: () => import('./ChildHooksAsync'),
   loading: () => null
 })
 
-interface ParentHookProps extends RouteComponentProps {}
+interface ParentHooksProps extends RouteComponentProps {}
 
-const ParentHook = (props: ParentHookProps) => {
+const ParentHooks = (props: ParentHooksProps) => {
   const { match } = props
   const [counter, setCounter] = useState(0)
 
@@ -65,11 +65,11 @@ const ParentHook = (props: ParentHookProps) => {
       <Switch>
         <Route path={`${match.path}/class-sync`} render={props => <ChildClassSync parentCounter={counter} />} />
         <Route path={`${match.path}/class-async`} render={props => <ChildClassAsync parentCounter={counter} />} />
-        <Route path={`${match.path}/hook-sync`} render={props => <ChildHookSync parentCounter={counter} />} />
-        <Route path={`${match.path}/hook-async`} render={props => <ChildHookAsync parentCounter={counter} />} />
+        <Route path={`${match.path}/hooks-sync`} render={props => <ChildHooksSync parentCounter={counter} />} />
+        <Route path={`${match.path}/hooks-async`} render={props => <ChildHooksAsync parentCounter={counter} />} />
       </Switch>
     </div>
   )
 }
 
-export default ParentHook
+export default ParentHooks
