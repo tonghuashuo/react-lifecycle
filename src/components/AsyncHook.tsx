@@ -1,25 +1,23 @@
 import React, { useState, useEffect } from 'react'
 import { ParentProps } from './interface'
-// import { showDivider } from './utils'
 
 const AsyncHook = (props: ParentProps) => {
   const { parentCounter } = props
   const [counter, setCounter] = useState(0)
 
   useEffect(() => {
-    console.log('AsyncHook Effect')
+    console.log('    AsyncHook Effect')
 
     return () => {
-      console.log('AsyncHook Effect (cleanup)')
+      console.log('    AsyncHook Effect (cleanup)')
     }
   }, [counter, parentCounter])
 
   useEffect(() => {
-    // console.log('================')
-    console.log('AsyncHook Effect (mount)')
+    console.log('    AsyncHook Effect (mount)')
 
     return () => {
-      console.log('AsyncHook Effect (cleanup / unmount)')
+      console.log('    AsyncHook Effect (cleanup / unmount)')
     }
   }, [])
 
@@ -33,12 +31,12 @@ const AsyncHook = (props: ParentProps) => {
     setCounter(c => c - 1)
   }
 
-  console.log('AsyncHook render')
+  console.log('    AsyncHook render')
 
   return (
     <div className='async-hook'>
       <div>
-        <span>AsyncHook: </span>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;Async Hook: </span>
         <button onClick={increase}>+</button>
         <span>{parentCounter} - {counter}</span>
         <button onClick={decrease}>-</button>

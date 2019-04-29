@@ -1,25 +1,23 @@
 import React, { useState, useEffect } from 'react'
 import { ParentProps } from './interface'
-// import { showDivider } from './utils'
 
 const SyncHook = (props: ParentProps) => {
   const { parentCounter } = props
   const [counter, setCounter] = useState(0)
 
   useEffect(() => {
-    console.log('SyncHook Effect (with-deps)')
+    console.log('    SyncHook Effect (with-deps)')
 
     return () => {
-      console.log('SyncHook Effect (with-deps / cleanup)')
+      console.log('    SyncHook Effect (with-deps / cleanup)')
     }
   }, [counter, parentCounter])
 
   useEffect(() => {
-    // console.log('================')
-    console.log('SyncHook Effect (no-deps)')
+    console.log('    SyncHook Effect (no-deps)')
 
     return () => {
-      console.log('SyncHook Effect (no-deps / cleanup)')
+      console.log('    SyncHook Effect (no-deps / cleanup)')
     }
   }, [])
 
@@ -33,12 +31,12 @@ const SyncHook = (props: ParentProps) => {
     setCounter(c => c - 1)
   }
 
-  console.log('SyncHook render')
+  console.log('    SyncHook render')
 
   return (
     <div className='sync-hook'>
       <div>
-        <span>SyncHook: </span>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;Sync Hook: </span>
         <button onClick={increase}>+</button>
         <span>{parentCounter} - {counter}</span>
         <button onClick={decrease}>-</button>
