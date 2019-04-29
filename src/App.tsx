@@ -5,24 +5,24 @@ import ParentHook from './components/ParentHook'
 
 const routes = [
   { to: '/', label: 'Home' },
-  { to: '/parent-class', label: 'Parent Class', children: [
-    { to: '/sync-class', label: 'Sync Class' },
-    { to: '/sync-hook', label: 'Sync Hook' },
-    { to: '/async-class', label: 'Async Class' },
-    { to: '/async-hook', label: 'Async Hook' },
+  { to: '/class', label: 'Parent (Class)', children: [
+    { to: '/class-sync', label: 'Child (Class / Sync)' },
+    { to: '/class-async', label: 'Child (Class / Async)' },
+    { to: '/hook-sync', label: 'Child (Hook / Sync)' },
+    { to: '/hook-async', label: 'Child (Hook / Async)' },
   ] },
-  { to: '/parent-hook', label: 'Parent Hook', children: [
-    { to: '/sync-class', label: 'Sync Class' },
-    { to: '/sync-hook', label: 'Sync Hook' },
-    { to: '/async-class', label: 'Async Class' },
-    { to: '/async-hook', label: 'Async Hook' }
+  { to: '/hook', label: 'Parent (Hook)', children: [
+    { to: '/class-sync', label: 'Child (Class / Sync)' },
+    { to: '/class-async', label: 'Child (Class / Async)' },
+    { to: '/hook-sync', label: 'Child (Hook / Sync)' },
+    { to: '/hook-async', label: 'Child (Hook / Async)' }
   ] },
 ]
 
 class App extends Component {
   render () {
     return (
-      <div className='App'>
+      <div className='root'>
         <nav>
           <dl>
             { routes.map(n => (
@@ -45,9 +45,13 @@ class App extends Component {
 
         <hr />
 
+        <p>Open the Console & See the Result</p>
+
+        <hr />
+
         <Switch>
-          <Route path='/parent-class' component={ParentClass} />
-          <Route path='/parent-hook' component={ParentHook} />
+          <Route path='/class' component={ParentClass} />
+          <Route path='/hook' component={ParentHook} />
         </Switch>
       </div>
     )

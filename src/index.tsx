@@ -1,7 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { HashRouter as Router, Route} from 'react-router-dom'
-import './index.scss'
 import App from './App'
 import { unregister } from './serviceWorker'
 

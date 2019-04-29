@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { ParentProps } from './interface'
+import { getDelay } from './utils'
 
-class SyncClass extends Component<ParentProps> {
+class ChildClassAsync extends Component<ParentProps> {
   constructor (props: ParentProps) {
     super(props)
 
-    console.log('    SyncClass Constructor')
+    console.log('    Child Constructor')
   }
 
   state = {
@@ -23,36 +24,41 @@ class SyncClass extends Component<ParentProps> {
   }
 
   static getDerivedStateFromProps () {
-    console.log('    SyncClass getDerivedStateFromProps')
+    console.log('    Child getDerivedStateFromProps')
     return null
   }
 
   getSnapshotBeforeUpdate () {
-    console.log('    SyncClass getSnapshotBeforeUpdate')
+    console.log('    Child getSnapshotBeforeUpdate')
     return null
   }
 
   componentDidUpdate () {
-    console.log('    SyncClass didUpdate')
+    console.log('    Child didUpdate')
   }
 
   componentDidMount () {
-    console.log('    SyncClass didMount')
+    console.log('    Child didMount')
+
+    const delay = getDelay()
+    setTimeout(() => {
+      console.log(`    Child Async Request on mount (${delay}ms)`)
+    }, delay)
   }
 
   componentWillUnmount () {
-    console.log('    SyncClass willUnmount')
+    console.log('    Child willUnmount')
   }
 
   render () {
-    console.log('    SyncClass render')
+    console.log('    Child render')
 
     return (
-      <div className='sync-class'>
+      <div className='child'>
+        <p>Child: </p>
         <div>
-          <span>&nbsp;&nbsp;&nbsp;&nbsp;Sync Class: </span>
           <button onClick={this.increase}>+</button>
-          <span>{this.props.parentCounter} - {this.state.counter}</span>
+          <span> {this.props.parentCounter} - {this.state.counter} </span>
           <button onClick={this.decrease}>-</button>
         </div>
       </div>
@@ -60,4 +66,4 @@ class SyncClass extends Component<ParentProps> {
   }
 }
 
-export default SyncClass
+export default ChildClassAsync

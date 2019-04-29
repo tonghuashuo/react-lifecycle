@@ -1,23 +1,29 @@
 import React, { useState, useEffect } from 'react'
 import { ParentProps } from './interface'
+import { getDelay } from './utils'
 
-const AsyncHook = (props: ParentProps) => {
+const ChildHookSync = (props: ParentProps) => {
   const { parentCounter } = props
   const [counter, setCounter] = useState(0)
 
   useEffect(() => {
-    console.log('    AsyncHook Effect')
+    console.log('    Child Effect')
 
     return () => {
-      console.log('    AsyncHook Effect (cleanup)')
+      console.log('    Child Effect Cleanup')
     }
   }, [counter, parentCounter])
 
   useEffect(() => {
-    console.log('    AsyncHook Effect (mount)')
+    console.log('    Child Effect (no-deps)')
+
+    const delay = getDelay()
+    setTimeout(() => {
+      console.log(`    Child Async Request on mount (${delay}ms)`)
+    }, delay)
 
     return () => {
-      console.log('    AsyncHook Effect (cleanup / unmount)')
+      console.log('    Child Effect Cleanup (no-deps)')
     }
   }, [])
 
@@ -31,18 +37,18 @@ const AsyncHook = (props: ParentProps) => {
     setCounter(c => c - 1)
   }
 
-  console.log('    AsyncHook render')
+  console.log('    Child render')
 
   return (
-    <div className='async-hook'>
+    <div className='child'>
+      <p>Child: </p>
       <div>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;Async Hook: </span>
         <button onClick={increase}>+</button>
-        <span>{parentCounter} - {counter}</span>
+        <span> {parentCounter} - {counter} </span>
         <button onClick={decrease}>-</button>
       </div>
     </div>
   )
 }
 
-export default AsyncHook
+export default ChildHookSync

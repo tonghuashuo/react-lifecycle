@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import Loadable from 'react-loadable'
 import { Switch, Route, RouteComponentProps} from 'react-router-dom'
-import SyncClass from './SyncClass'
-import SyncHook from './SyncHook'
+import ChildClassSync from './ChildClassSync'
+import ChildHookSync from './ChildHookSync'
+import { getDelay } from './utils'
 
-const AsyncClass = Loadable({
-  loader: () => import('./AsyncClass'),
+const ChildClassAsync = Loadable({
+  loader: () => import('./ChildClassAsync'),
   loading: () => null
 })
-const AsyncHook = Loadable({
-  loader: () => import('./AsyncHook'),
+const ChildHookAsync = Loadable({
+  loader: () => import('./ChildHookAsync'),
   loading: () => null
 })
 
@@ -20,18 +21,23 @@ const ParentHook = (props: ParentHookProps) => {
   const [counter, setCounter] = useState(0)
 
   useEffect(() => {
-    console.log('ClassHook Effect')
+    console.log('Parent Effect')
 
     return () => {
-      console.log('ClassHook Effect (cleanup)')
+      console.log('Parent Effect Cleanup)')
     }
   }, [counter])
 
   useEffect(() => {
-    console.log('ClassHook Effect (mount)')
+    console.log('Parent Effect (no-deps)')
+
+    const delay = getDelay()
+    setTimeout(() => {
+      console.log(`Parent Async Request on mount (${delay}ms)`)
+    }, delay)
 
     return () => {
-      console.log('ClassHook Effect (cleanup / unmount)')
+      console.log('Parent Effect Cleanup (no-deps)')
     }
   }, [])
 
@@ -45,22 +51,22 @@ const ParentHook = (props: ParentHookProps) => {
     setCounter(c => c - 1)
   }
 
-  console.log('ParentHook render')
+  console.log('Parent render')
 
   return (
-    <div className='parent-hook'>
+    <div className='parent'>
+      <p>Parent: </p>
       <div>
-        <span>Class Hook: </span>
         <button onClick={increase}>+</button>
-        <span>{counter}</span>
+        <span> {counter} </span>
         <button onClick={decrease}>-</button>
       </div>
 
       <Switch>
-        <Route path={`${match.path}/sync-class`} render={props => <SyncClass parentCounter={counter} />} />
-        <Route path={`${match.path}/sync-hook`} render={props => <SyncHook parentCounter={counter} />} />
-        <Route path={`${match.path}/async-class`} render={props => <AsyncClass parentCounter={counter} />} />
-        <Route path={`${match.path}/async-hook`} render={props => <AsyncHook parentCounter={counter} />} />
+        <Route path={`${match.path}/class-sync`} render={props => <ChildClassSync parentCounter={counter} />} />
+        <Route path={`${match.path}/class-async`} render={props => <ChildClassAsync parentCounter={counter} />} />
+        <Route path={`${match.path}/hook-sync`} render={props => <ChildHookSync parentCounter={counter} />} />
+        <Route path={`${match.path}/hook-async`} render={props => <ChildHookAsync parentCounter={counter} />} />
       </Switch>
     </div>
   )
