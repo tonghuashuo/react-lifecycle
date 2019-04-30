@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useLayoutEffect } from 'react'
 import Loadable from 'react-loadable'
 import { Switch, Route, RouteComponentProps} from 'react-router-dom'
 import ChildClassSync from './ChildClassSync'
@@ -24,7 +24,15 @@ const ParentHooks = (props: ParentHooksProps) => {
     console.log('Parent Effect')
 
     return () => {
-      console.log('Parent Effect Cleanup)')
+      console.log('Parent Effect Cleanup')
+    }
+  }, [counter])
+
+  useLayoutEffect(() => {
+    console.log('Parent LayoutEffect')
+
+    return () => {
+      console.log('Parent LayoutEffect Cleanup')
     }
   }, [counter])
 

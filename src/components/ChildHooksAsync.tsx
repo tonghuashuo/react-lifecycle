@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useLayoutEffect } from 'react'
 import { ParentProps } from './interface'
 import { getDelay } from './utils'
 
@@ -11,6 +11,14 @@ const ChildHooksAsync = (props: ParentProps) => {
 
     return () => {
       console.log('    Child Effect Cleanup')
+    }
+  }, [counter, parentCounter])
+
+  useLayoutEffect(() => {
+    console.log('    Child LayoutEffect')
+
+    return () => {
+      console.log('    Child LayoutEffect Cleanup')
     }
   }, [counter, parentCounter])
 
