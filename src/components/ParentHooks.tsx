@@ -3,6 +3,7 @@ import Loadable from 'react-loadable'
 import { Switch, Route, RouteComponentProps} from 'react-router-dom'
 import ChildClassSync from './ChildClassSync'
 import ChildHooksSync from './ChildHooksSync'
+import Children from './Children'
 import { getDelay } from './utils'
 
 const ChildClassAsync = Loadable({
@@ -21,31 +22,31 @@ const ParentHooks = (props: ParentHooksProps) => {
   const [counter, setCounter] = useState(0)
 
   useEffect(() => {
-    console.log('Parent Effect')
+    console.log('Parent (H) Effect')
 
     return () => {
-      console.log('Parent Effect Cleanup')
+      console.log('Parent (H) Effect Cleanup')
     }
   }, [counter])
 
   useLayoutEffect(() => {
-    console.log('Parent LayoutEffect')
+    console.log('Parent (H) LayoutEffect')
 
     return () => {
-      console.log('Parent LayoutEffect Cleanup')
+      console.log('Parent (H) LayoutEffect Cleanup')
     }
   }, [counter])
 
   useEffect(() => {
-    console.log('Parent Effect (no-deps)')
+    console.log('Parent (H) Effect (no-deps)')
 
     const delay = getDelay()
     setTimeout(() => {
-      console.log(`Parent Async Request on mount (${delay}ms)`)
+      console.log(`Parent (H) Request on mount (${delay}ms)`)
     }, delay)
 
     return () => {
-      console.log('Parent Effect Cleanup (no-deps)')
+      console.log('Parent (H) Effect Cleanup (no-deps)')
     }
   }, [])
 
@@ -59,12 +60,12 @@ const ParentHooks = (props: ParentHooksProps) => {
     setCounter(c => c - 1)
   }
 
-  console.log('Parent render')
+  console.log('Parent (H) render')
 
   return (
     <div className='parent'>
-      <p>Parent: </p>
       <div>
+        <span>Parent (H): </span>
         <button onClick={increase}>+</button>
         <span> {counter} </span>
         <button onClick={decrease}>-</button>
@@ -75,6 +76,7 @@ const ParentHooks = (props: ParentHooksProps) => {
         <Route path={`${match.path}/class-async`} render={props => <ChildClassAsync parentCounter={counter} />} />
         <Route path={`${match.path}/hooks-sync`} render={props => <ChildHooksSync parentCounter={counter} />} />
         <Route path={`${match.path}/hooks-async`} render={props => <ChildHooksAsync parentCounter={counter} />} />
+        <Route path={`${match.path}/`} exact render={props => <Children parentCounter={counter} />} />
       </Switch>
     </div>
   )

@@ -5,17 +5,17 @@ import ParentHooks from './components/ParentHooks'
 
 const routes = [
   { to: '/', label: 'Home' },
-  { to: '/class', label: 'Parent (Class)', children: [
-    { to: '/class-sync', label: 'Child (Class / Sync)' },
-    { to: '/class-async', label: 'Child (Class / Async)' },
-    { to: '/hooks-sync', label: 'Child (Hooks / Sync)' },
-    { to: '/hooks-async', label: 'Child (Hooks / Async)' },
+  { to: '/class', label: 'Parent (C)', children: [
+    { to: '/class-sync', label: 'Child (C/S)' },
+    { to: '/class-async', label: 'Child (C/C)' },
+    { to: '/hooks-sync', label: 'Child (H/S)' },
+    { to: '/hooks-async', label: 'Child (H/C)' },
   ] },
-  { to: '/hooks', label: 'Parent (Hooks)', children: [
-    { to: '/class-sync', label: 'Child (Class / Sync)' },
-    { to: '/class-async', label: 'Child (Class / Async)' },
-    { to: '/hooks-sync', label: 'Child (Hooks / Sync)' },
-    { to: '/hooks-async', label: 'Child (Hooks / Async)' }
+  { to: '/hooks', label: 'Parent (H)', children: [
+    { to: '/class-sync', label: 'Child (C/S)' },
+    { to: '/class-async', label: 'Child (C/C)' },
+    { to: '/hooks-sync', label: 'Child (H/S)' },
+    { to: '/hooks-async', label: 'Child (H/C)' }
   ] },
 ]
 
@@ -45,7 +45,8 @@ class App extends Component {
 
         <hr />
 
-        <p>Open the Console & See the Result</p>
+        <p>1) 打开控制台以查看结果</p>
+        <p>2) 括号里的缩写：C (Class), H (Hooks), S (Sync), A (Async)</p>
 
         <hr />
 

@@ -3,6 +3,7 @@ import Loadable from 'react-loadable'
 import { Switch, Route, RouteComponentProps} from 'react-router-dom'
 import ChildClassSync from './ChildClassSync'
 import ChildHooksSync from './ChildHooksSync'
+import Children from './Children'
 import { getDelay } from './utils'
 
 const ChildClassAsync = Loadable({
@@ -20,7 +21,7 @@ class ParentClass extends Component<ParentClassProps> {
   constructor (props: ParentClassProps) {
     super(props)
 
-    console.log('Parent Constructor')
+    console.log('Parent (C) Constructor')
   }
 
   state = {
@@ -38,39 +39,39 @@ class ParentClass extends Component<ParentClassProps> {
   }
 
   static getDerivedStateFromProps () {
-    console.log('Parent getDerivedStateFromProps')
+    console.log('Parent (C) getDerivedStateFromProps')
     return null
   }
 
   getSnapshotBeforeUpdate () {
-    console.log('Parent getSnapshotBeforeUpdate')
+    console.log('Parent (C) getSnapshotBeforeUpdate')
     return null
   }
 
   componentDidUpdate () {
-    console.log('Parent didUpdate')
+    console.log('Parent (C) didUpdate')
   }
 
   componentDidMount () {
-    console.log('Parent didMount')
+    console.log('Parent (C) didMount')
 
     const delay = getDelay()
     setTimeout(() => {
-      console.log(`Parent Async Request on mount (${delay}ms)`)
+      console.log(`Parent (C) Request on mount (${delay}ms)`)
     }, delay)
   }
 
   componentWillUnmount () {
-    console.log('Parent willUnmount')
+    console.log('Parent (C) willUnmount')
   }
 
   render () {
-    console.log('Parent render')
+    console.log('Parent (C) render')
 
     return (
       <div className='parent'>
-        <p>Parent: </p>
         <div>
+          <span>Parent (C): </span>
           <button onClick={this.increase}>+</button>
           <span> {this.state.counter} </span>
           <button onClick={this.decrease}>-</button>
@@ -81,6 +82,7 @@ class ParentClass extends Component<ParentClassProps> {
           <Route path={`${this.props.match.path}/class-async`} render={props => <ChildClassAsync parentCounter={this.state.counter} />} />
           <Route path={`${this.props.match.path}/hooks-sync`} render={props => <ChildHooksSync parentCounter={this.state.counter} />} />
           <Route path={`${this.props.match.path}/hooks-async`} render={props => <ChildHooksAsync parentCounter={this.state.counter} />} />
+          <Route path={`${this.props.match.path}/`} exact render={props => <Children parentCounter={this.state.counter} />} />
         </Switch>
       </div>
     )

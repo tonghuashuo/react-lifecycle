@@ -6,7 +6,7 @@ class ChildClassAsync extends Component<ParentProps> {
   constructor (props: ParentProps) {
     super(props)
 
-    console.log('    Child Constructor')
+    console.log('    Child (C/A) Constructor')
   }
 
   state = {
@@ -24,39 +24,39 @@ class ChildClassAsync extends Component<ParentProps> {
   }
 
   static getDerivedStateFromProps () {
-    console.log('    Child getDerivedStateFromProps')
+    console.log('    Child (C/A) getDerivedStateFromProps')
     return null
   }
 
   getSnapshotBeforeUpdate () {
-    console.log('    Child getSnapshotBeforeUpdate')
+    console.log('    Child (C/A) getSnapshotBeforeUpdate')
     return null
   }
 
   componentDidUpdate () {
-    console.log('    Child didUpdate')
+    console.log('    Child (C/A) didUpdate')
   }
 
   componentDidMount () {
-    console.log('    Child didMount')
+    console.log('    Child (C/A) didMount')
 
     const delay = getDelay()
     setTimeout(() => {
-      console.log(`    Child Async Request on mount (${delay}ms)`)
+      console.log(`    Child (C/A) Request on mount (${delay}ms)`)
     }, delay)
   }
 
   componentWillUnmount () {
-    console.log('    Child willUnmount')
+    console.log('    Child (C/A) willUnmount')
   }
 
   render () {
-    console.log('    Child render')
+    console.log('    Child (C/A) render')
 
     return (
       <div className='child'>
-        <p>Child: </p>
         <div>
+          <span>Child (C/A): </span>
           <button onClick={this.increase}>+</button>
           <span> {this.props.parentCounter} - {this.state.counter} </span>
           <button onClick={this.decrease}>-</button>

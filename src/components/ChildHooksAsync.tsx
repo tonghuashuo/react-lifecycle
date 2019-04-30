@@ -7,31 +7,31 @@ const ChildHooksAsync = (props: ParentProps) => {
   const [counter, setCounter] = useState(0)
 
   useEffect(() => {
-    console.log('    Child Effect')
+    console.log('    Child (H/A) Effect')
 
     return () => {
-      console.log('    Child Effect Cleanup')
+      console.log('    Child (H/A) Effect Cleanup')
     }
   }, [counter, parentCounter])
 
   useLayoutEffect(() => {
-    console.log('    Child LayoutEffect')
+    console.log('    Child (H/A) LayoutEffect')
 
     return () => {
-      console.log('    Child LayoutEffect Cleanup')
+      console.log('    Child (H/A) LayoutEffect Cleanup')
     }
   }, [counter, parentCounter])
 
   useEffect(() => {
-    console.log('    Child Effect (no-deps)')
+    console.log('    Child (H/A) Effect (no-deps)')
 
     const delay = getDelay()
     setTimeout(() => {
-      console.log(`    Child Async Request on mount (${delay}ms)`)
+      console.log(`    Child (H/A) Request on mount (${delay}ms)`)
     }, delay)
 
     return () => {
-      console.log('    Child Effect Cleanup (no-deps)')
+      console.log('    Child (H/A) Effect Cleanup (no-deps)')
     }
   }, [])
 
@@ -45,12 +45,12 @@ const ChildHooksAsync = (props: ParentProps) => {
     setCounter(c => c - 1)
   }
 
-  console.log('    Child render')
+  console.log('    Child (H/A) render')
 
   return (
     <div className='child'>
-      <p>Child: </p>
       <div>
+        <span>Child (H/A): </span>
         <button onClick={increase}>+</button>
         <span> {parentCounter} - {counter} </span>
         <button onClick={decrease}>-</button>
