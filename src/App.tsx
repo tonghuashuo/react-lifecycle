@@ -7,15 +7,15 @@ const routes = [
   { to: '/', label: 'Home' },
   { to: '/class', label: 'Parent (C)', children: [
     { to: '/class-sync', label: 'Child (C/S)' },
-    { to: '/class-async', label: 'Child (C/C)' },
+    { to: '/class-async', label: 'Child (C/A)' },
     { to: '/hooks-sync', label: 'Child (H/S)' },
-    { to: '/hooks-async', label: 'Child (H/C)' },
+    { to: '/hooks-async', label: 'Child (H/A)' },
   ] },
   { to: '/hooks', label: 'Parent (H)', children: [
     { to: '/class-sync', label: 'Child (C/S)' },
-    { to: '/class-async', label: 'Child (C/C)' },
+    { to: '/class-async', label: 'Child (C/A)' },
     { to: '/hooks-sync', label: 'Child (H/S)' },
-    { to: '/hooks-async', label: 'Child (H/C)' }
+    { to: '/hooks-async', label: 'Child (H/A)' }
   ] },
 ]
 

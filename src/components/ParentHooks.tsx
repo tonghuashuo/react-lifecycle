@@ -7,11 +7,11 @@ import Children from './Children'
 import { getDelay } from './utils'
 
 const ChildClassAsync = Loadable({
-  loader: () => import('./ChildClassAsync'),
+  loader: () => import(/* webpackChunkName: "ChildClassAsync" */'./ChildClassAsync'),
   loading: () => null
 })
 const ChildHooksAsync = Loadable({
-  loader: () => import('./ChildHooksAsync'),
+  loader: () => import(/* webpackChunkName: "ChildHooksAsync" */'./ChildHooksAsync'),
   loading: () => null
 })
 
