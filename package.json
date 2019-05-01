@@ -2,7 +2,7 @@
   "name": "react-lifecycle",
   "version": "0.1.0",
   "private": true,
-  "homepage" : "http://tonghuashuo.github.io/react-lifecycle",
+  "homepage": "http://tonghuashuo.github.io/react-lifecycle",
   "dependencies": {
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
